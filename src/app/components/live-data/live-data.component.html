@@ -1,0 +1,14 @@
+<h2>Live Data</h2>
+<div id="canvas-container">
+<canvas baseChart width="400" height="400"
+                [datasets]="getChartData()"
+                [labels]="lineChartLabels"
+                [options]="lineChartOptions"
+                [colors]="lineChartColors"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
+</canvas>
+</div>
+<a md-button (click)="exportAsCSV()">Export as CSV from Data Storage</a>
