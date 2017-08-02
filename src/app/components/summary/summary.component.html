@@ -1,1 +1,27 @@
-<h2>Summary Page</h2>
+<div class="header">
+  <a
+    md-button
+    id="back"
+    [routerLink]="['/live_data']"
+    [queryParams]="{ tag: activeTag }">
+    <md-icon>chevron_left</md-icon>
+  </a>
+  <h2>Summary Page</h2>
+</div>
+<div class="selectOptions">
+  <md-select id="tagOptions" placeholder="Sensortag" [(ngModel)]="activeTag">
+     <md-option *ngFor="let tag of tags" [value]="tag">{{ tag }}</md-option>
+  </md-select>
+</div>
+<ed-chart [start]="getChartStart()" [showSlider]="false" [data]="getChartData()"></ed-chart>
+{{getMaxAccel()}}
+<div class="buttonContainer">
+  <a
+    md-raised-button
+    class="exportCSV"
+    color="primary"
+    (click)="exportAsCSV()">
+    <md-icon>file_download</md-icon>
+    Download CSV
+  </a>
+</div>

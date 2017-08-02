@@ -6,15 +6,15 @@ import {
 } from 'ngx-mqtt';
 
 export const CREDS = {
-  httpApiEndpoint: "https://s913cv.internetofthings.ibmcloud.com/api/v0002/",
-  apiKey: "a-s913cv-vbffh6pfbm",
-  apiToken: "DD)@!OGbWrdGfJb9zH"
+  httpApiEndpoint: "https://b77cj3.internetofthings.ibmcloud.com/api/v0002/",
+  apiKey: "a-b77cj3-wljzey1hwy",
+  apiToken: "C4x5yi*K5vgm9eH1LM"
 }
 
 export const MQTT_SERVICE_OPTIONS = {
-  hostname: 's913cv.messaging.internetofthings.ibmcloud.com',
+  hostname: 'b77cj3.messaging.internetofthings.ibmcloud.com',
   port: 1883,
-  clientId: 'a:s913cv:eggDrop',
+  clientId: 'a:b77cj3:eggDrop',
   username: CREDS.apiKey,
   password: CREDS.apiToken
 };

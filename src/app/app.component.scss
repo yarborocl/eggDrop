@@ -3,5 +3,19 @@ md-sidenav {
 }
 
 md-sidenav-container {
+  display: flex;
+  flex-flow: column;
   height: 100vh; //100%
+  .content {
+    max-width: 1000px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 20px;
+    background: rgba(0,0,0,0.015);
+    height: calc(100vh - 64px);
+    overflow:auto;
+  }
+  md-sidenav {
+    flex: 0 0 auto;
+  }
 }

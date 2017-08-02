@@ -1,4 +1,57 @@
+.header {
+  margin-bottom: 25px;
+}
 #canvas-container {
-  width: 400px;
-  height: 400px;
+  width: 100%;
+  overflow: auto;
+  padding-top: 20px;
+  canvas {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+.selectOptions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  margin: 10px;
+}
+.dataContainer {
+  display: flex;
+  flex-direction: column;
+  .cell {
+    flex: 1 1 50%;
+    min-width: 300px;
+    &.gauge {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+}
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  .cell {
+    flex: 0 1 50%;
+    &#leftButtons {
+      flex: 0 1 auto;
+    }
+    &#rightButtons {
+      display: flex;
+      flex-flow: row wrap;
+      flex: 1 1 auto;
+      justify-content: flex-end;
+    }
+  }
+  .button {
+    margin: 5px;
+    &.begin {
+      background-color: hsl(148, 90%, 41%) !important;
+      color: #FFF;
+    }
+    &.reset {
+      background-color: #ffbe00;
+    }
+  }
 }

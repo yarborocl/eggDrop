@@ -1,14 +1,58 @@
-<h2>Live Data</h2>
-<div id="canvas-container">
-<canvas baseChart width="400" height="400"
-                [datasets]="getChartData()"
-                [labels]="lineChartLabels"
-                [options]="lineChartOptions"
-                [colors]="lineChartColors"
-                [legend]="lineChartLegend"
-                [chartType]="lineChartType"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)">
-</canvas>
+<div class="header">
+  <h2>Live Data</h2>
 </div>
-<a md-button (click)="exportAsCSV()">Export as CSV from Data Storage</a>
+<div class="selectOptions">
+  <md-select id="tagOptions" placeholder="Device" [(ngModel)]="activeTag">
+     <md-option *ngFor="let tag of getTags()" [value]="tag">{{ tag }}</md-option>
+  </md-select>
+</div>
+<div class="dataContainer">
+  <div class="cell gauge">
+    <ed-gauge class="gauge" [data]="getCurrentResult()"></ed-gauge>
+  </div>
+  <div class="cell">
+    <ed-chart [data]="getChartInput()"></ed-chart>
+  </div>
+</div>
+<div class="buttonContainer">
+  <div class="cell" id="leftButtons">
+    <a
+      md-raised-button
+      class="button"
+      color="primary"
+      (click)="exportAsCSV()">
+      <md-icon>file_download</md-icon>
+      Download CSV
+    </a>
+  </div>
+  <div class="cell" id="rightButtons">
+    <div id="spacer"></div>
+    <a
+      md-raised-button
+      class="button reset"
+      color="warn"
+      (click)="resetResults()">
+      <md-icon>refresh</md-icon>
+      Reset Data Collection
+    </a>
+    <a
+      *ngIf="!collect; else elseBlock"
+      md-raised-button class="button begin"
+      (click)="subscribe()">
+      <md-icon>play_circle_outline</md-icon>
+      Begin Data Collection
+    </a>
+    <ng-template #elseBlock>
+      <a
+        md-raised-button
+        class="button"
+        color="warn"
+        (click)="unsubscribe()"
+        [routerLink]="['/summary']"
+        [queryParams]="{ tag: activeTag }">
+        <md-icon>pause_circle_outline</md-icon>
+        End Data Collection
+      </a>
+    </ng-template>
+  </div>
+</div>

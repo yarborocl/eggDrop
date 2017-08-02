@@ -6,11 +6,15 @@ import 'hammerjs';
 import { RouterModule, Routes } from '@angular/router';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { HttpModule } from '@angular/http';
+import { FormsModule }   from '@angular/forms';
+import { IonRangeSliderModule } from 'ng2-ion-range-slider';
+import { GaugeModule } from 'ng-gauge';
+import { JustgageModule } from 'angular2-justgage';
 
 import { AppComponent } from './app.component';
-import { PageNotFoundComponent, LiveDataComponent, SummaryComponent } from './components';
+import { PageNotFoundComponent, LiveDataComponent, SummaryComponent, ChartComponent, GaugeComponent } from './components';
 
-import { IOTProvider, InteractCloudant } from './services';
+import { IOTProvider, ResultsGlobal } from './services';
 
 import {
   MqttMessage,
@@ -33,7 +37,9 @@ const routes: Routes = [
     AppComponent,
     PageNotFoundComponent,
     LiveDataComponent,
-    SummaryComponent
+    SummaryComponent,
+    ChartComponent,
+    GaugeComponent
   ],
   imports: [
     BrowserModule,
@@ -45,11 +51,15 @@ const routes: Routes = [
     MqttModule.forRoot({
       provide: MqttService,
       useFactory: mqttServiceFactory
-    })
+    }),
+    FormsModule,
+    IonRangeSliderModule,
+    GaugeModule,
+    JustgageModule
   ],
   providers: [
     IOTProvider,
-    InteractCloudant
+    ResultsGlobal
   ],
   bootstrap: [AppComponent]
 })

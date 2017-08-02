@@ -19,7 +19,6 @@ export class IOTProvider {
   private _endpoint: string;
   private _key: string;
   private _token: string;
-  public myOtherMessage$: Observable<MqttMessage>;
   public myMessage;
 
 
@@ -29,17 +28,9 @@ export class IOTProvider {
     this._token = CREDS.apiToken;
   }
 
-public getMQTTStream(path: string=this.getPath()): Observable<MqttMessage> {
-  return this._mqttService.observe(path);
-}
-  // public ngOnInit() {
-  //   let path = this.getPath();
-  //   console.log(path);
-  //   this._mqttService.observe(path).subscribe((message: MqttMessage) => {
-  //     this.myMessage = message.payload.toString();
-  //     console.log(this.myMessage);
-  //   });
-  // }
+  public getMQTTStream(path: string=this.getPath()): Observable<MqttMessage> {
+    return this._mqttService.observe(path);
+  }
 
   public unsafePublish(topic: string, message: string): void {
     this._mqttService.unsafePublish(topic, message, {qos: 1, retain: true});
@@ -54,24 +45,4 @@ public getMQTTStream(path: string=this.getPath()): Observable<MqttMessage> {
     let path = sprintf('iot-2/type/%s/id/%s/evt/%s/fmt/%s', deviceType, deviceId, eventId, formatString);
     return path;
   }
-  /*
-  public getDeviceStream(deviceType:string="SensortagType", deviceId:string="+", eventId:string="+", formatString:string="+"): Observable<any> {
-    let path = sprintf('iot-2/type/%s/id/%s/evt/%s/fmt/%s', deviceType, deviceId, eventId, formatString);
-    let fullPath = this._endpoint + path;
-    let headers = new Headers();
-    headers.append("Authorization", "Basic " + this.getAuthToken());
-    console.log(headers);
-    let options = new RequestOptions();
-    options.headers = headers;
-    return this._http.get(fullPath, options)
-      .map((response) => {
-        return response.json();
-      })
-      .catch((error:any) => {
-        console.log("error");
-        return Observable.of(error);
-      });
-
-  }
-  */
 }

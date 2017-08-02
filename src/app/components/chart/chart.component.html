@@ -1,0 +1,23 @@
+<div id="container">
+  <ion-range-slider
+    id="timeSlider"
+    type="double"
+    min="0"
+    postfix="s"
+    [max]="getMaxSlider()"
+    [from]="getFromSlider()"
+    [to]="getMaxSlider()"
+    (onChange)="onIntervalChange($event)"
+    *ngIf="showSlider">
+  </ion-range-slider>
+  <div id="canvas-container">
+    <canvas baseChart width="1000" height="400"
+                    [datasets]="getChartData()"
+                    [labels]="lineChartLabels"
+                    [options]="lineChartOptions"
+                    [colors]="lineChartColors"
+                    [legend]="lineChartLegend"
+                    [chartType]="lineChartType">
+    </canvas>
+  </div>
+</div>
